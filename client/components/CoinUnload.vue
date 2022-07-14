@@ -23,6 +23,6 @@ v-menu(v-model="active")
       @click="emit('unload', unloadType.key)"
       :key="unloadType.key"
     )
-      v-list-item-icon(:icon="'mdi-${unloadType.icon}'" start)
+      v-list-item-icon(:icon="`mdi-${unloadType.icon}`" start)
       v-list-item-title {{ unloadType.name }}
 </template>
