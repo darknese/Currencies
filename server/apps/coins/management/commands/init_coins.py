@@ -8,5 +8,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         rates = get_rates()
-
+        Rate.objects.bulk_create([
+            Rate(**rate) for rate in rates
+        ])
         self.stdout.write("Инициализация валют.")
