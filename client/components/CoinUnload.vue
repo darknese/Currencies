@@ -13,7 +13,7 @@ const unloadTypes: { key: string, name: string, icon: string }[] = [
 ]
 </script>
 <template lang="pug">
-v-menu(v-model="active")
+v-menu(v-model="active" )
   template(#activator="{ props }")
     v-btn(v-bind="props" icon flat)
       v-icon(color="success") mdi-download

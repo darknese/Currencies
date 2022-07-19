@@ -2,16 +2,11 @@
 import { ref } from '#imports'
 import CoinFilter from '~/components/CoinFilter.vue'
 import CoinUnload from '~/components/CoinUnload.vue'
+import CoinsView from '~/components/views/CoinsView.vue'
+import NoChoiceCoinsView from '~/components/views/NoChoiceCoinsView.vue'
+import OneChoiceCoinsView from '~/components/views/OneChoiceCoinsView.vue'
 
-const headers: { name: string, value: string }[] = [
-  { name: 'Код валюты', value: '1' },
-  { name: 'Название валюты', value: '2' },
-  { name: 'Цена', value: '3' },
-  { name: 'Дата котировки', value: '4' },
-  { name: 'Наминал', value: '5' },
-]
-
-const choiseCoins = ref<string[]>(['rub', '$'])
+const choiceCoins = ref<string[]>([])
 
 </script>
 
@@ -19,18 +14,14 @@ const choiseCoins = ref<string[]>(['rub', '$'])
 v-container
   v-row
     v-col
-      coin-filter
-    v-col.text-right
+      coin-filter(:choice="choiceCoins" @update="choiceCoins = $event")
+    v-col.text-right(v-show="choiceCoins.length" :choice="choiceCoins")
       coin-unload
   v-row
     v-col
-      v-table(fixed-header)
-        thead
-          tr
-            th(v-for="header in headers" :key="header.value") {{ header.name }}
-        tbody
-          tr
-            td(v-for="header in headers" :key="header.value") {{ header.value }}
+      no-choice-coins-view(v-if="choiceCoins.length === 0" )
+      one-choice-coins-view(v-else-if="choiceCoins.length === 1" )
+      coins-view(v-else)
 </template>
 
 

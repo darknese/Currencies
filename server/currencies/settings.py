@@ -25,12 +25,13 @@ SECRET_KEY = 'django-insecure-z7_%-t@3tck+tmou05p-3l3l$ugo$=r8!8l45%hwbtdw#bsuo*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG: bool = True
 
-ALLOWED_HOSTS: list[str] = ['w']
+ALLOWED_HOSTS: list[str] = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS: list[str] = [
+    'django_filters',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.staticfiles',

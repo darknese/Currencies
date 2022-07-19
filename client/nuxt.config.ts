@@ -6,6 +6,11 @@ export default defineNuxtConfig({
     'vuetify/lib/styles/main.css',
     'mdi/css/materialdesignicons.min.css'
   ],
+  runtimeConfig: {
+    public: {
+      API_URL: process.env.NUXT_API_URL
+    }
+  },
   build: {
     transpile: ['vuetify']
   }
