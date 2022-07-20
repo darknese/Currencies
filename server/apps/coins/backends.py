@@ -15,6 +15,9 @@ class ValueFilterBackend(filters.DjangoFilterBackend):
         data: QueryDict = kwargs.get('data')
         date: datetime = datetime.strptime(data['date'], '%m/%d/%Y') \
             if 'date' in data \
-            else timezone.now().strftime('%m/%d/%Y')
+            else timezone.now().date()
+        # updated_data = QueryDict({
+        #     'date': date.strftime('%m/%d/%Y')
+        # })
         get_values(date.date())
         return kwargs

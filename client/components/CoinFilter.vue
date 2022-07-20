@@ -22,14 +22,15 @@ const emit = defineEmits<{
   (e: 'update', chosen: string[]): void
 }>()
 
-const { data: rates } = await useDataFetch('/coins/rates')
+const { data: rates } = await useDataFetch('/coins/rates/')
+
 
 const active = ref<boolean>(false)
 const selected = ref(props.choice)
 const search = ref('')
 
 const selectedAll = computed({
-  get: () => (selected.value.length === (rates.value as RateType[]).length as unknown),
+  get: () => (selected.value.length === (rates.value || [] as RateType[]).length as unknown),
   set: (value: boolean) => {
     selected.value = value ? (rates.value as RateType[]).map(rate => rate.code) : []
   }
@@ -70,6 +71,7 @@ const apply = () => {
 v-menu(v-model="active" :close-on-content-click="false" )
   template(#activator="{ props }")
     v-chip(v-bind="props") {{ titleText }}
+  v-card
   v-card
     v-text-field(v-model="search" label="Поиск" clearable hide-details)
     v-card-text(style="overflow-y: auto; height: 300px")

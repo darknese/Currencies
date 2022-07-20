@@ -15,6 +15,8 @@ class RateSerializer(serializers.ModelSerializer):
 class ValueSerializer(serializers.ModelSerializer):
     """Класс сериализации валютных значений."""
 
+    rate = RateSerializer()
+
     class Meta:
         model = Value
         fields = '__all__'
